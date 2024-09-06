@@ -13,6 +13,21 @@ flask-sqlalchemy = "3.1.1"
 flask-minify = "0.48"
 flask-migrate = "4.0.7"
 
+[tool.poetry.group.dev.dependencies]
+commitizen = "^3.29.0"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "pep440"
+version_provider = "poetry"
+update_changelog_on_bump = true
+major_version_zero = false
+version_files = [
+    "pyproject.toml:^version",
+    "Makefile:^VERSION"
+]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
