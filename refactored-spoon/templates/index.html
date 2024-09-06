@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <title>Restaurantes</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Lista de Restaurantes</h1>
+
+        <form method="post" class="form-inline mb-4">
+            <label for="city_id" class="mr-2">Filtrar por Ciudad:</label>
+            <select id="city_id" name="city_id" class="form-control mr-2">
+                <option value="">Todas</option>
+                {% for city in cities %}
+                    <option value="{{ city.id }}">{{ city.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </form>
+
+        <div class="row">
+            {% for restaurant in restaurants %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ restaurant.name }}</h5>
+                            <p class="card-text">{{ restaurant.address }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {{ pagination.links }}
+        </div>
+
+        <a href="{{ url_for('add') }}" class="btn btn-success">Añadir Restaurante</a>
+    </div>
+</body>
+</html>
