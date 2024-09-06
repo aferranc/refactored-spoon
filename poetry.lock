@@ -59,20 +59,6 @@ async = ["asgiref (>=3.2)"]
 dotenv = ["python-dotenv"]
 
 [[package]]
-name = "flask-paginate"
-version = "2024.4.12"
-description = "Simple paginate support for flask"
-optional = false
-python-versions = "*"
-files = [
-    {file = "flask-paginate-2024.4.12.tar.gz", hash = "sha256:2de04606b061736f0fc8fbe73d9d4d6fc03664638eca70a57728b03b3e2c9577"},
-    {file = "flask_paginate-2024.4.12-py2.py3-none-any.whl", hash = "sha256:2c5a19c851b07456b2bb354d2f5dc9d59fbad0b7241599f3450c86c2427e4da1"},
-]
-
-[package.dependencies]
-Flask = "*"
-
-[[package]]
 name = "flask-sqlalchemy"
 version = "3.1.1"
 description = "Add SQLAlchemy support to your Flask application."
@@ -373,4 +359,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "bb3c7b293da753934a236054e6d24e5bced74355d28d54822d3a42b7faf8e8a1"
+content-hash = "de635713f74e0cb699c1072bfe5844fdfcf90f6b4285cd4d8be9642362708737"
