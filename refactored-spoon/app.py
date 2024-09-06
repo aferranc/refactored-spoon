@@ -1,4 +1,5 @@
 from flask import Flask, redirect, render_template, request, url_for
+from flask_minify import Minify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey, Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -14,6 +15,9 @@ db = SQLAlchemy(model_class=Base)
 
 # Create the Flask application instance
 app = Flask(__name__)
+
+# Minify app
+Minify(app=app, html=True, js=True, cssless=True, static=True)
 
 # Configure the SQLite database, relative to the app instance folder
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
