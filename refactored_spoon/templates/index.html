@@ -32,10 +32,12 @@
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
-                    <th>Nombre <i class="bi bi-caret-down-fill"></i></th>
-                    <th>Dirección</th>
-                    <th>Ciudad</th>
-                    <th>Región</th>
+                    <th>Nom <i class="bi bi-caret-down-fill"></i></th>
+                    <th>Adreça</th>
+                    <th>Ciutat</th>
+                    <th>Provincia</th>
+                    <th>CA</th>
+                    <th>Pais</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,7 +46,9 @@
                         <td>{{ restaurant.name }}</td>
                         <td>{{ restaurant.address }}</td>
                         <td>{{ restaurant.city_name }}</td>
-                        <td>{{ restaurant.region }}</td>
+                        <td>{{ restaurant.province_name }}</td>
+                        <td>{{ restaurant.region_name }}</td>
+                        <td>{{ restaurant.country_name }}</td>
                     {% endfor %}
             </tbody>
         </table>

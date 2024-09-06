@@ -1,4 +1,5 @@
 from flask import Flask, redirect, render_template, request, url_for
+from flask_migrate import Migrate
 from flask_minify import Minify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey, Integer, String
@@ -28,28 +29,25 @@ db.init_app(app)
 
 # Define the Country model
 class Country(db.Model):
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    name: Mapped[str] = mapped_column(String(80), nullable=False)
+    name: Mapped[str] = mapped_column(String(80), primary_key=True, nullable=False)
 
 
 # Define the Region model
 class Region(db.Model):
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    name: Mapped[str] = mapped_column(String(80), unique=True)
+    name: Mapped[str] = mapped_column(String(80), primary_key=True, unique=True)
+    country_name: Mapped[str] = mapped_column(ForeignKey("country.name"), nullable=False)
 
 
 # Define the Province model
 class Province(db.Model):
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    name: Mapped[str] = mapped_column(String(80), unique=True)
-    region_id: Mapped[int] = mapped_column(ForeignKey("region.id"), nullable=False)
+    name: Mapped[str] = mapped_column(String(80), primary_key=True, unique=True)
+    region_name: Mapped[str] = mapped_column(ForeignKey("region.name"), nullable=False)
 
 
 # Define the City model
 class City(db.Model):
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    name: Mapped[str] = mapped_column(String(80), unique=True)
-    province_id: Mapped[int] = mapped_column(ForeignKey("province.id"), nullable=False)
+    name: Mapped[str] = mapped_column(String(80), primary_key=True, unique=True)
+    province_name: Mapped[str] = mapped_column(ForeignKey("province.name"), nullable=False)
 
 
 # Define the Restaurant model
@@ -57,12 +55,18 @@ class Restaurant(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(80), unique=True)
     address: Mapped[str] = mapped_column(String(120), nullable=False)
-    city_id: Mapped[int] = mapped_column(ForeignKey("city.id"), nullable=False)
+    city_name: Mapped[str] = mapped_column(ForeignKey("city.name"), nullable=False)
+    province_name: Mapped[str] = mapped_column(ForeignKey("province.name"), nullable=False)
+    region_name: Mapped[str] = mapped_column(ForeignKey("region.name"), nullable=False)
+    country_name: Mapped[str] = mapped_column(ForeignKey("country.name"), nullable=False)
 
 
 # Create all database tables
 with app.app_context():
     db.create_all()
+
+# Initialize Flask-Migrate
+migrate = Migrate(app, db)
 
 
 # Define the index route
@@ -71,9 +75,11 @@ def index():
     cities = City.query.all()  # Query all cities
 
     if request.method == "POST":
-        city_id = request.form["city_id"]  # Get the selected city ID from the form
-        if city_id:
-            restaurants = Restaurant.query.filter_by(city_id=city_id).all()  # Query restaurants in the selected city
+        city_name = request.form.get("city_name")  # Get the selected city name from the form
+        if city_name:
+            restaurants = Restaurant.query.filter_by(
+                city_name=city_name
+            ).all()  # Query restaurants in the selected city
         else:
             restaurants = Restaurant.query.all()  # Query all restaurants if no city is selected
     else:
@@ -84,4 +90,4 @@ def index():
 
 # Run the app
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run()
