@@ -5,6 +5,7 @@ description = "Directory de restaurants"
 authors = ["Albert Ferran Casas <albert.ferran@gmail.com>"]
 license = "LICENSE"
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"
