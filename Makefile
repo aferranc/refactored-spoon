@@ -1,10 +1,10 @@
 # Variables
 SHELL := /bin/bash
-VERSION := 1.7.0
+VERSION := 0.1.0
 BUILD_DIR := $(CURDIR)/build
 VENV_DIR := $(CURDIR)/.venv
 
-.PHONY: help all clean install update run release
+.PHONY: help all clean install update run export release
 .DEFAULT_GOAL: help
 
 help: ## Show this help message.
@@ -38,6 +38,10 @@ update: env ## Update dependencies via poetry.
 run: env ## Launch app.
 	@echo "+ Launching app"
 	@FLASK_APP=refactored_spoon/app.py FLASK_DEBUG=true flask run
+
+export: env ## Export requirements file.
+	@echo "+ Export requirements file"
+	@poetry export --output requirements.txt --without-hashes
 
 release: ## Bump release version (patch|minor|major).
 	@cz bump --yes
