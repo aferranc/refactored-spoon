@@ -1,5 +1,11 @@
+// Configure DataTable
 $(document).ready(function() {
     var table = $('#restaurantTable').DataTable({
+        // Configure column definitions
+        "columnDefs": [
+            { "searchable": false, "targets": 6 }  // Disable search in the "Actions" column
+        ],
+        // Configure the language settings for the DataTable
         language: {
             search: 'Cerca:',
             entries: {
@@ -7,7 +13,9 @@ $(document).ready(function() {
                 1: 'entrada'
             }
         },
+        // Set the initial order of the columns
         order: [[0, 'asc'], [2, 'asc']],
+        // Configure the layout of the DataTable
         layout: {
             topStart: {
                 pageLength: {
@@ -29,9 +37,17 @@ $(document).ready(function() {
             },
             bottomEnd: {
                 paging: {
-                    numbers: true
+                    numbers: true  // Enable pagination with numbers
                 }
             }
         }
     });
 });
+
+// Hide flash message after 5 seconds
+setTimeout(function() {
+    var flashMessage = document.getElementById('flash-message');
+    if (flashMessage) {
+        flashMessage.style.display = 'none';
+    }
+}, 5000);
