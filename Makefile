@@ -1,7 +1,6 @@
 # Variables
 SHELL := /bin/bash
 VERSION := 0.1.0
-BUILD_DIR := $(CURDIR)/build
 VENV_DIR := $(CURDIR)/.venv
 
 .PHONY: help all clean install update run export release
@@ -20,7 +19,6 @@ clean: ## Remove extraneous compiled files, caches, logs, etc.
 	@find . -type d -name '.pytest_cache' -exec rm -rf {} +
 	@find . -type f -name '*.py[co]' -exec rm -f {} +
 	@find . -name '*~' -exec rm -f {} +
-	@rm -rf $(BUILD_DIR)/
 
 env:
 	@echo "+ Creating local virtualenv"
