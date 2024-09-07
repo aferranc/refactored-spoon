@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, flash, redirect, render_template, request, url_for
 from flask_migrate import Migrate
 from flask_minify import Minify
 from flask_sqlalchemy import SQLAlchemy
@@ -16,6 +16,7 @@ db = SQLAlchemy(model_class=Base)
 
 # Create the Flask application instance
 app = Flask(__name__)
+app.secret_key = "jXthea5ednWrlExO1WJfewOq6COYPE3N"  # nosec
 
 # Minify app
 Minify(app=app, html=True, js=True, cssless=True, static=True)
@@ -85,7 +86,24 @@ def index():
     else:
         restaurants = Restaurant.query.all()  # Query all restaurants for GET requests
 
-    return render_template("index.html", restaurants=restaurants, cities=cities)  # Render the template with data
+    return render_template("index.html", restaurants=restaurants, cities=cities)
+
+
+# Define the edit route
+@app.route("/edit/<int:id>", methods=("GET", "POST"))
+def edit(id):
+    restaurant = Restaurant.query.get_or_404(id)
+    if request.method == "POST":
+        restaurant.name = request.form["name"]
+        restaurant.address = request.form["address"]
+        restaurant.city_name = request.form["city_name"]
+        restaurant.province_name = request.form["province_name"]
+        restaurant.region_name = request.form["region_name"]
+        restaurant.country_name = request.form["country_name"]
+        db.session.commit()
+        flash("Restaurant actualitzat correctament!")
+        return redirect(url_for("index"))
+    return render_template("edit.html", restaurant=restaurant)
 
 
 # Run the app

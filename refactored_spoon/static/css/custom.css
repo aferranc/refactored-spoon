@@ -1,9 +1,0 @@
-/* styles.css */
-th, td {
-    padding: 15px;
-    text-align: center;
-}
-
-.table tbody tr:nth-child(odd) {
-    background-color: #f2f2f2;
-}
