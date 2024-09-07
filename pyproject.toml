@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "refactored-spoon"
-version = "0.1.0"
+version = "0.2.0"
 description = "Directory de restaurants"
 authors = ["Albert Ferran Casas <albert.ferran@gmail.com>"]
 license = "LICENSE"
