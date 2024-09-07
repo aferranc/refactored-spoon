@@ -1,3 +1,16 @@
+## 1.0.0 (2024-09-07)
+
+### BREAKING CHANGE
+
+- From now on you can edit the information of a restaurant
+
+### Feat
+
+- **frontend**: Add edit restaurant template
+- **frontend**: Add edit restaurant route
+- **custom.jss**: Hide flash message after 5 seconds
+- **custom.jss**: Configured info layout and translated some phrases
+
 ## 0.2.0 (2024-09-07)
 
 ### Feat
