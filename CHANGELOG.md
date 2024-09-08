@@ -1,3 +1,27 @@
+## 1.1.2 (2024-09-08)
+
+### Fix
+
+- Add top margin to flash messages
+
+### Refactor
+
+- Comment pdm files
+
+## 1.1.1 (2024-09-08)
+
+### Fix
+
+- Add admin login
+
+### Refactor
+
+- Rename app directory name
+- Adapt to the new structure
+- Add html base layouts
+- Add EditorConfig file
+- Add navigation bar
+
 ## 1.1.0 (2024-09-08)
 
 ### Feat
