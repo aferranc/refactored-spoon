@@ -12,19 +12,19 @@ from app.models import City, Country, Province, Region, Restaurant, User
 # Define index route
 @app.route("/", methods=("GET", "POST"))
 def index():
-    cities = City.query.all()  # Query all cities
-    countries = Country.query.all()  # Query all countries
-    regions = Region.query.all()  # Query all regions
-    provinces = Province.query.all()  # Query all provinces
+    cities = City.query.all()
+    countries = Country.query.all()
+    regions = Region.query.all()
+    provinces = Province.query.all()
 
     if request.method == "POST":
-        city_id = request.form.get("city_id")  # Get the selected city id from the form
+        city_id = request.form.get("city_id")
         if city_id:
-            restaurants = Restaurant.query.filter_by(city_id=city_id).all()  # Query restaurants in the selected city
+            restaurants = Restaurant.query.filter_by(city_id=city_id).all()
         else:
-            restaurants = Restaurant.query.all()  # Query all restaurants if no city is selected
+            restaurants = Restaurant.query.all()
     else:
-        restaurants = Restaurant.query.all()  # Query all restaurants for GET requests
+        restaurants = Restaurant.query.all()
 
     return render_template(
         "index.html", restaurants=restaurants, cities=cities, countries=countries, regions=regions, provinces=provinces
@@ -49,7 +49,7 @@ def edit(id):
         restaurant.region_id = request.form["region_id"]
         restaurant.country_id = request.form["country_id"]
         db.session.commit()
-        flash("Restaurant successfully updated!")
+        flash("Restaurant successfully updated!", "success")
         return redirect(url_for("index"))
     return render_template(
         "edit.html", restaurant=restaurant, countries=countries, regions=regions, provinces=provinces, cities=cities
@@ -65,7 +65,7 @@ def login():
     if form.validate_on_submit():
         user = db.session.scalar(sa.select(User).where(User.username == form.username.data))
         if user is None or not user.check_password(form.password.data):
-            flash("Invalid username or password")
+            flash("Invalid username or password", "danger")
             return redirect(url_for("login"))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get("next")
