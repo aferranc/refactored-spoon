@@ -1,6 +1,6 @@
 # Variables
 SHELL := /bin/bash
-VERSION := 1.1.2
+VERSION := 1.1.3
 VENV_DIR := $(CURDIR)/.venv
 
 .PHONY: help all clean install update run export release

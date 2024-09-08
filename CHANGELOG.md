@@ -1,3 +1,12 @@
+## 1.1.3 (2024-09-08)
+
+### Refactor
+
+- Serve css scripts locally
+- Set version number on js files
+- Split functions into separate files
+- Serve js scripts locally
+
 ## 1.1.2 (2024-09-08)
 
 ### Fix
