@@ -17,6 +17,7 @@ flask-wtf = "1.2.1"
 
 [tool.poetry.group.dev.dependencies]
 commitizen = "^3.29.0"
+python-dotenv = "^1.0.1"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
