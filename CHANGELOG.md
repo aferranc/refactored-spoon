@@ -1,3 +1,18 @@
+## 1.2.1 (2024-09-08)
+
+### Fix
+
+- Add flash message status category
+- Show flash messages based on status category
+- Remove function
+
+### Refactor
+
+- Set logging to file in production mode
+- Configure 404 and 500 error handlers
+- enable trim_trailing_whitespace and insert_final_newline
+- Remove empty end line
+
 ## 1.2.0 (2024-09-08)
 
 ### Feat
