@@ -31,16 +31,17 @@
     </div>
     {% block javascripts %}
       <!-- Bootstrap JS Bundle with Popper -->
-      <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/bootstrap-5.3.3.bundle.min.js') }}"></script>
       <!-- jQuery -->
       <script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
       <!-- Twitter Bootstrap JS -->
-      <script src="{{ url_for('static', filename='js/twitter-bootstrap.bundle.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/twitter-bootstrap-5.3.0.bundle.min.js') }}"></script>
       <!-- DataTables JS -->
-      <script src="{{ url_for('static', filename='js/dataTables.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/dataTables.bootstrap5.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/dataTables-2.1.5.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/dataTables.bootstrap5-2.1.5.min.js') }}"></script>
       <!-- Custom JS -->
-      <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/flash-messages-timeout.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/dataTables-custom-settings.js') }}"></script>
     {% endblock javascripts %}
   </body>
 </html>
