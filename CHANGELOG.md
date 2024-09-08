@@ -1,3 +1,13 @@
+## 1.1.2 (2024-09-08)
+
+### Fix
+
+- Add top margin to flash messages
+
+### Refactor
+
+- Comment pdm files
+
 ## 1.1.1 (2024-09-08)
 
 ### Fix
