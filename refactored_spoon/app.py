@@ -155,18 +155,6 @@ def logout():
     return redirect(url_for("index"))
 
 
-# Ejemplo de cómo crear un usuario (no disponible en la interfaz de usuario, solo para propósitos de demostración)
-@app.route("/create_user")
-def create_user():
-    username = "admin"
-    password = "admin"  # nosec
-    hashed_password = generate_password_hash(password, method="pbkdf2")
-    new_user = User(username=username, password=hashed_password)
-    db.session.add(new_user)
-    db.session.commit()
-    return "User created"
-
-
 # Run the app
 if __name__ == "__main__":
     app.run()
