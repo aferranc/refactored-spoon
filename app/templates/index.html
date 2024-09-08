@@ -21,10 +21,10 @@
         <tr>
           <td>{{ restaurant.name }}</td>
           <td>{{ restaurant.address }}</td>
-          <td>{{ restaurant.city_name }}</td>
-          <td>{{ restaurant.province_name }}</td>
-          <td>{{ restaurant.region_name }}</td>
-          <td>{{ restaurant.country_name }}</td>
+          <td>{{ restaurant.city.name }}</td>
+          <td>{{ restaurant.province.name }}</td>
+          <td>{{ restaurant.region.name }}</td>
+          <td>{{ restaurant.country.name }}</td>
           <td>
             {% if current_user.is_authenticated %}
               <a href="{{ url_for('edit', id=restaurant.id) }}" class="btn btn-primary">Editar</a>
