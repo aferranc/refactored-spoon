@@ -1,9 +1,18 @@
 from flask import Flask, flash, redirect, render_template, request, url_for
+from flask_login import (
+    LoginManager,
+    UserMixin,
+    current_user,
+    login_required,
+    login_user,
+    logout_user,
+)
 from flask_migrate import Migrate
 from flask_minify import Minify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey, Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 # Define a base class for declarative class definitions
@@ -13,19 +22,6 @@ class Base(DeclarativeBase):
 
 # Initialize SQLAlchemy with a custom base class
 db = SQLAlchemy(model_class=Base)
-
-# Create the Flask application instance
-app = Flask(__name__)
-app.secret_key = "jXthea5ednWrlExO1WJfewOq6COYPE3N"  # nosec
-
-# Minify app
-Minify(app=app, html=True, js=True, cssless=True, static=True)
-
-# Configure the SQLite database, relative to the app instance folder
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
-
-# Initialize the app with the SQLAlchemy extension
-db.init_app(app)
 
 
 # Define the Country model
@@ -62,12 +58,42 @@ class Restaurant(db.Model):
     country_name: Mapped[str] = mapped_column(ForeignKey("country.name"), nullable=False)
 
 
+# Create the Flask application instance
+app = Flask(__name__)
+app.secret_key = "jXthea5ednWrlExO1WJfewOq6COYPE3N"  # nosec
+
+# Minify app
+Minify(app=app, html=True, js=True, cssless=True, static=True)
+
+# Configure the SQLite database, relative to the app instance folder
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+
+# Initialize the app with the SQLAlchemy extension
+db.init_app(app)
+
 # Create all database tables
 with app.app_context():
     db.create_all()
 
 # Initialize Flask-Migrate
 migrate = Migrate(app, db)
+
+# Initialize Flask-Login
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"  # Redirect to login page if not authenticated
+
+
+# Define the User model
+class User(UserMixin, db.Model):
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    username: Mapped[str] = mapped_column(String(80), unique=True)
+    password: Mapped[str] = mapped_column(String(120))
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 # Define the index route
@@ -91,6 +117,7 @@ def index():
 
 # Define the edit route
 @app.route("/edit/<int:id>", methods=("GET", "POST"))
+@login_required
 def edit(id):
     restaurant = Restaurant.query.get_or_404(id)
     if request.method == "POST":
@@ -104,6 +131,40 @@ def edit(id):
         flash("Restaurant actualitzat correctament!")
         return redirect(url_for("index"))
     return render_template("edit.html", restaurant=restaurant)
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        user = User.query.filter_by(username=username).first()
+        if user and check_password_hash(user.password, password):
+            login_user(user)
+            return redirect(url_for("index"))
+        else:
+            flash("Invalid username or password")
+
+    return render_template("login.html")
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("index"))
+
+
+# Ejemplo de cómo crear un usuario (no disponible en la interfaz de usuario, solo para propósitos de demostración)
+@app.route("/create_user")
+def create_user():
+    username = "admin"
+    password = "admin"  # nosec
+    hashed_password = generate_password_hash(password, method="pbkdf2")
+    new_user = User(username=username, password=hashed_password)
+    db.session.add(new_user)
+    db.session.commit()
+    return "User created"
 
 
 # Run the app
