@@ -1,3 +1,18 @@
+## 1.1.4 (2024-09-08)
+
+### Fix
+
+- Add sqlite stuff
+- Add config file
+- User login using flask-login
+- Add FLASK_APP main script
+
+### Refactor
+
+- Add restaurant tables and relationships
+- Add python-dotenv devel package
+- Add flask-wtf package
+
 ## 1.1.3 (2024-09-08)
 
 ### Refactor
