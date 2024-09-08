@@ -1,18 +1,11 @@
 from flask import Flask, flash, redirect, render_template, request, url_for
-from flask_login import (
-    LoginManager,
-    UserMixin,
-    current_user,
-    login_required,
-    login_user,
-    logout_user,
-)
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 from flask_migrate import Migrate
 from flask_minify import Minify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey, Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import check_password_hash
 
 
 # Define a base class for declarative class definitions
@@ -143,7 +136,7 @@ def login():
             login_user(user)
             return redirect(url_for("index"))
         else:
-            flash("Invalid username or password")
+            flash("Nom d'usuari o contrassenya no vàlids")
 
     return render_template("login.html")
 
