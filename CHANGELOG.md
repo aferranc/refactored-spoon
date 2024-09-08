@@ -1,3 +1,17 @@
+## 1.2.0 (2024-09-08)
+
+### Feat
+
+- Add login and logut pages
+
+### Fix
+
+- Fix tables relationships
+
+### Refactor
+
+- Adapt templates to tables fix
+
 ## 1.1.4 (2024-09-08)
 
 ### Fix
