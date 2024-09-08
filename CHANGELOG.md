@@ -1,3 +1,13 @@
+## 1.1.0 (2024-09-08)
+
+### Feat
+
+- Add admin login feature and create new Users table
+
+### Fix
+
+- Remove /create_user route
+
 ## 1.0.0 (2024-09-07)
 
 ### BREAKING CHANGE
