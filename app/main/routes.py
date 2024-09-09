@@ -1,4 +1,5 @@
 from flask import flash, redirect, render_template, request, url_for
+from flask_babel import _
 from flask_login import login_required
 
 from app import db
@@ -46,7 +47,7 @@ def edit(id):
         restaurant.region_id = request.form["region_id"]
         restaurant.country_id = request.form["country_id"]
         db.session.commit()
-        flash("Restaurant successfully updated!", "success")
+        flash(_("Restaurant successfully updated!"), "success")
         return redirect(url_for("main.index"))
     return render_template(
         "edit.html", restaurant=restaurant, countries=countries, regions=regions, provinces=provinces, cities=cities
