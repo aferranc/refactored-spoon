@@ -1,6 +1,6 @@
 # Variables
 SHELL := /bin/bash
-VERSION := 1.3.1
+VERSION := 1.4.0
 VENV_DIR := $(CURDIR)/.venv
 
 .PHONY: help all clean install update run export release
@@ -35,7 +35,7 @@ update: env ## Update dependencies via poetry.
 
 run: env ## Launch app.
 	@echo "+ Launching app"
-	@FLASK_APP=restaurants.py FLASK_DEBUG=true flask run
+	@FLASK_APP=run.py FLASK_DEBUG=true flask run
 
 export: env ## Export requirements file.
 	@echo "+ Export requirements file"

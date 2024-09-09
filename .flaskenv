@@ -1,1 +1,1 @@
-FLASK_APP=restaurants.py
+FLASK_APP=run.py
