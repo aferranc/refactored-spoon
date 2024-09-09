@@ -2,18 +2,18 @@
 
 {% block content %}
 <div class="container">
-  <h1 class="my-4">Edit Restaurant</h1>
+  <h1 class="my-4">{{ _('Edit Restaurant') }}</h1>
   <form method="POST">
     <div class="mb-3">
-      <label for="name" class="form-label">Name</label>
+      <label for="name" class="form-label">{{ _('Name') }}</label>
       <input type="text" class="form-control" id="name" name="name" value="{{ restaurant.name }}" required>
     </div>
     <div class="mb-3">
-      <label for="address" class="form-label">Address</label>
+      <label for="address" class="form-label">{{ _('Address') }}</label>
       <input type="text" class="form-control" id="address" name="address" value="{{ restaurant.address }}" required>
     </div>
     <div class="mb-3">
-      <label for="city_id" class="form-label">City</label>
+      <label for="city_id" class="form-label">{{ _('City') }}</label>
       <select class="form-control" id="city_id" name="city_id" required>
         {% for city in cities %}
           <option value="{{ city.id }}" {% if city.id == restaurant.city_id %}selected{% endif %}>{{ city.name }}</option>
@@ -21,7 +21,7 @@
       </select>
     </div>
     <div class="mb-3">
-      <label for="province_id" class="form-label">Province</label>
+      <label for="province_id" class="form-label">{{ _('Province') }}</label>
       <select class="form-control" id="province_id" name="province_id" required>
         {% for province in provinces %}
           <option value="{{ province.id }}" {% if province.id == restaurant.province_id %}selected{% endif %}>{{ province.name }}</option>
@@ -29,7 +29,7 @@
       </select>
     </div>
     <div class="mb-3">
-      <label for="region_id" class="form-label">Region</label>
+      <label for="region_id" class="form-label">{{ _('Region') }}</label>
       <select class="form-control" id="region_id" name="region_id" required>
         {% for region in regions %}
           <option value="{{ region.id }}" {% if region.id == restaurant.region_id %}selected{% endif %}>{{ region.name }}</option>
@@ -37,14 +37,14 @@
       </select>
     </div>
     <div class="mb-3">
-      <label for="country_id" class="form-label">Country</label>
+      <label for="country_id" class="form-label">{{ _('Country') }}</label>
       <select class="form-control" id="country_id" name="country_id" required>
         {% for country in countries %}
           <option value="{{ country.id }}" {% if country.id == restaurant.country_id %}selected{% endif %}>{{ country.name }}</option>
         {% endfor %}
       </select>
     </div>
-    <button type="submit" class="btn btn-primary">Save changes</button>
+    <button type="submit" class="btn btn-primary">{{ _('Save changes') }}</button>
   </form>
 </div>
 {% endblock content %}
