@@ -1,3 +1,12 @@
+## 1.4.2 (2024-09-09)
+
+### Fix
+
+- Add cli to manage translations
+- Update translations
+- Update favicon
+- Remove remember_me data
+
 ## 1.4.1 (2024-09-09)
 
 ### Fix
