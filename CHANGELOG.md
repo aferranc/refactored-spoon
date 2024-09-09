@@ -1,3 +1,23 @@
+## 1.4.0 (2024-09-09)
+
+### Feat
+
+- Register main blueprint
+- Register authentication blueprint
+- Initialize blueprints
+- Configure flask application factory
+
+### Fix
+
+- Fix blueprint configuration
+- Move errors templates to blueprint directory
+- Ignore all log files
+- Rename FLASK_APP file
+
+### Refactor
+
+- Remove 'Remeber me' checkbox
+
 ## 1.3.1 (2024-09-09)
 
 ### Refactor
