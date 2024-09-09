@@ -1,10 +1,11 @@
 [tool.poetry]
 name = "refactored-spoon"
-version = "1.2.1"
+version = "1.3.0"
 description = "Directory de restaurants"
 authors = ["Albert Ferran Casas <albert.ferran@gmail.com>"]
 license = "LICENSE"
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"

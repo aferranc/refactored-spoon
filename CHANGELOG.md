@@ -1,3 +1,21 @@
+## 1.3.0 (2024-09-09)
+
+### Feat
+
+- Generated Spanish language catalogue and translations
+- Add command cli to manage translations more easily
+- Configure and adapt templates to show translated texts
+- Initial babel configuration
+- Add flask-babel package
+
+### Fix
+
+- Move the configuration file to top directory
+
+### Refactor
+
+- Remove language translations
+
 ## 1.2.1 (2024-09-08)
 
 ### Fix
