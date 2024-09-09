@@ -35,7 +35,7 @@ update: env ## Update dependencies via poetry.
 
 run: env ## Launch app.
 	@echo "+ Launching app"
-	@FLASK_APP=restaurants.py FLASK_DEBUG=true flask run
+	@FLASK_APP=run.py FLASK_DEBUG=true flask run
 
 export: env ## Export requirements file.
 	@echo "+ Export requirements file"
