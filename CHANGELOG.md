@@ -1,3 +1,10 @@
+## 1.3.1 (2024-09-09)
+
+### Refactor
+
+- Set Catalan as default language
+- Add Catalan tex translations
+
 ## 1.3.0 (2024-09-09)
 
 ### Feat
