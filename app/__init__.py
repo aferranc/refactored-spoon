@@ -2,12 +2,19 @@ import logging
 import os
 from logging.handlers import RotatingFileHandler
 
-from flask import Flask
+from flask import Flask, request
+from flask_babel import Babel
+from flask_babel import lazy_gettext as _l
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 from config import Config
+
+
+def get_locale():
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -15,8 +22,9 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = "login"
+login.login_message = _l("Please log in to access this page.")
+babel = Babel(app, locale_selector=get_locale)
 
-from app import errors, models, routes
 
 if not app.debug:
     if not os.path.exists("logs"):
@@ -28,3 +36,5 @@ if not app.debug:
 
     app.logger.setLevel(logging.INFO)
     app.logger.info("Refactored Spoon startup")
+
+from app import errors, models, routes
