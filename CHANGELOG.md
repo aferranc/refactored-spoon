@@ -1,3 +1,16 @@
+## 1.4.1 (2024-09-09)
+
+### Fix
+
+- Add texts to translation
+- Remove 'Remember me' button
+- Add favicon
+- Fix error templates path
+
+### Refactor
+
+- Add wtf form bootstrap file
+
 ## 1.4.0 (2024-09-09)
 
 ### Feat
