@@ -33,7 +33,7 @@ def create_app(config_class=Config):
     login.init_app(app)
     babel.init_app(app, locale_selector=get_locale)
 
-    from app.routes import bp as routes_bp
+    from app.main import bp as routes_bp
 
     app.register_blueprint(routes_bp)
 

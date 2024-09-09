@@ -1,10 +1,9 @@
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask import flash, redirect, render_template, request, url_for
 from flask_login import login_required
 
 from app import db
+from app.main import bp
 from app.models import City, Country, Province, Region, Restaurant
-
-bp = Blueprint("main", __name__)
 
 
 # Define index route
