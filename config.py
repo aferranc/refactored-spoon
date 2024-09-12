@@ -1,3 +1,13 @@
+"""
+This module defines the configuration settings for the Flask application.
+
+It sets up the necessary configurations such as the secret key, database URI,
+supported languages, and the default locale for the Babel extension.
+
+Modules:
+    os: Provides a way of using operating system dependent functionality.
+"""
+
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))

@@ -1,3 +1,22 @@
+"""
+This module sets up the Flask application, including configuration, database,
+and logging. It also defines the shell context and initializes various Flask extensions.
+
+Modules:
+    logging: Provides logging functionality.
+    os: Provides a way of using operating system dependent functionality.
+    RotatingFileHandler: A handler for logging that rotates log files.
+    Flask: The Flask application class.
+    current_app: Proxy for the current application.
+    request: Proxy for the current request.
+    Babel: Flask extension for internationalization and localization.
+    lazy_gettext: Function for lazy translation.
+    LoginManager: Flask-Login extension for user session management.
+    Migrate: Flask-Migrate extension for handling database migrations.
+    SQLAlchemy: Flask-SQLAlchemy extension for database integration.
+    Config: Configuration class for the application.
+"""
+
 import logging
 import os
 from logging.handlers import RotatingFileHandler
@@ -13,6 +32,12 @@ from config import Config
 
 
 def get_locale():
+    """
+    Determines the best match for supported languages based on the request.
+
+    Returns:
+        str: The best match for the supported languages.
+    """
     return request.accept_languages.best_match(current_app.config["LANGUAGES"])
 
 
@@ -25,6 +50,15 @@ babel = Babel()
 
 
 def create_app(config_class=Config):
+    """
+    Creates and configures the Flask application.
+
+    Args:
+        config_class (class): The configuration class to use.
+
+    Returns:
+        Flask: The configured Flask application instance.
+    """
     app = Flask(__name__)
     app.config.from_object(config_class)
 
