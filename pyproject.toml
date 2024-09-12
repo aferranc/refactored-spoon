@@ -34,6 +34,15 @@ version_files = [
     "Makefile:^VERSION"
 ]
 
+[tool.pylint]
+disable = [
+    "C0301",  # Line too long
+    "R0903",  # Too few public methods
+]
+ignore = [
+    "migrations",  # Flask db migrations
+]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
