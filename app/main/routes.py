@@ -1,21 +1,3 @@
-"""
-This module defines the main routes for the Flask application.
-
-It includes routes for displaying the index page and editing restaurant details.
-
-Modules:
-    flash: Function to flash messages to the user.
-    redirect: Function to redirect the user to a different endpoint.
-    render_template: Function to render HTML templates.
-    request: Proxy for the current request.
-    url_for: Function to build a URL to a specific endpoint.
-    _: Function for translation and localization.
-    login_required: Decorator to require user login for a route.
-    db: SQLAlchemy database instance.
-    bp: Blueprint for the main routes.
-    City, Country, Province, Region, Restaurant: Database models.
-"""
-
 from flask import flash, redirect, render_template, request, url_for
 from flask_babel import _
 from flask_login import login_required
@@ -54,21 +36,21 @@ def index():
     )
 
 
-@bp.route("/edit/<int:id>", methods=("GET", "POST"))
+@bp.route("/edit/<int:restaurant_id>", methods=("GET", "POST"))
 @login_required
-def edit(id):
+def edit(restaurant_id):
     """
     Route for editing a restaurant's details.
 
     Allows authenticated users to update restaurant information.
 
     Args:
-        id (int): The ID of the restaurant to edit.
+        restaurant_id (int): The ID of the restaurant to edit.
 
     Returns:
         Response: The response object to render the edit template or redirect the user.
     """
-    restaurant = Restaurant.query.get_or_404(id)
+    restaurant = Restaurant.query.get_or_404(restaurant_id)
     countries = Country.query.all()
     regions = Region.query.all()
     provinces = Province.query.all()
