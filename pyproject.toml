@@ -20,6 +20,7 @@ flask-babel = "4.0.0"
 [tool.poetry.group.dev.dependencies]
 commitizen = "^3.29.0"
 python-dotenv = "^1.0.1"
+pylint = "^3.2.7"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
