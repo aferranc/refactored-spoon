@@ -39,7 +39,7 @@ disable = [
     "C0301",  # Line too long
     "R0903",  # Too few public methods
 ]
-ignore = [
+ignore-paths = [
     "migrations",  # Flask db migrations
 ]
 
