@@ -1,3 +1,12 @@
+## 1.4.3 (2024-09-12)
+
+### Fix
+
+- Add docstrings
+- Add pylint configuration
+- Add pylint development tool
+- add docstrings
+
 ## 1.4.2 (2024-09-09)
 
 ### Fix
